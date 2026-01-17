@@ -5,10 +5,9 @@ import schemas, database, model
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordBearer
 try:
-    from config import settings
+    from .config import settings
 except ImportError:
-    from .config import settings  # Import settings from your config
-
+    from config import settings
 # Use environment variables from settings
 SECRET_KEY = settings.secret_key
 ALGORITHM = settings.algorithm

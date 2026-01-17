@@ -5,11 +5,9 @@ from sqlalchemy.orm import Relationship
 from sqlalchemy.sql.expression import text
 # Use try-except for both cases
 try:
-    # For normal running (from app folder)
-    from database import Base
-except ImportError:
-    # For Alembic (from root folder)
     from .database import Base
+except ImportError:
+    from database import Base
 
 class Post(Base):
     __tablename__ = "posts"#column name

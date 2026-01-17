@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine 
 # Add try-except for config too
 try:
-    from config import settings
+    from .config import settings  # Try relative import first
 except ImportError:
-    from .config import settings
+    from config import settings   # Try absolute import
 from sqlalchemy.orm import declarative_base,sessionmaker   
 #SQLALCHEMY_DATABASE_URL = 'postgresql://‹username>:<password>@<ip-address/hostname>/‹database_name›'
 SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.user}:{settings.password}@{settings.host}:{settings.port}/{settings.database}"
