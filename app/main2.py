@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 #model.Base.metadata.create_all(bind = engine) # ye line hatana hoga when i use alembic ,bcoz alembic will create all database and yahan bas uvicorn se server activate krenge
 app = FastAPI()
 # List of allowed origins (frontend URLs)
-origins = ["*"
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,           # Which origins are allowed

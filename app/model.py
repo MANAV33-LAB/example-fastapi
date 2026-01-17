@@ -1,8 +1,15 @@
 from sqlalchemy import Column,Integer,String,Boolean,ForeignKey
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.orm import Relationship
-from .database import Base
+
 from sqlalchemy.sql.expression import text
+# Use try-except for both cases
+try:
+    # For normal running (from app folder)
+    from database import Base
+except ImportError:
+    # For Alembic (from root folder)
+    from .database import Base
 
 class Post(Base):
     __tablename__ = "posts"#column name
