@@ -2,16 +2,17 @@ from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
 
 # Try relative imports first (for Render), fallback to absolute (for local)
-try:
-    from .. import schemas
-    from .. import oauth
-    from .. import model
-    from .. import database
-except ImportError:
-    import schemas
-    import oauth
-    import model
-    import database
+# These files are in app/routers/
+# Need to import from parent directory (app/)
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import model        # This works because we added parent to path
+import oauth
+import schemas
+import database
 
 routers = APIRouter(
     prefix="/votes",

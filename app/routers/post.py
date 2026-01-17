@@ -6,19 +6,18 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 # Try relative imports first (for Render), fallback to absolute (for local)
-try:
-    from .. import model
-    from .. import oauth
-    from .. import schemas
-    from ..schemas import PostCreate, responsE
-    from ..database import get_db
-except ImportError:
-    import model
-    import oauth
-    import schemas
-    from schemas import PostCreate, responsE
-    from database import get_db
+# These files are in app/routers/
+# Need to import from parent directory (app/)
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import model        # This works because we added parent to path
+import oauth
+import schemas
+from database import get_db
+from schemas import PostCreate, responsE
 routers = APIRouter(
     tags=['POSTS'] #ye bas in our url open by /docs,toh wahan organise rahega ,means sab Posts table ka ye ,and user wale ka alag organise
 )

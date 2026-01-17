@@ -1,18 +1,19 @@
 # Try relative imports first (for Render), fallback to absolute (for local)
-try:
-    from .. import model
-    from .. import utilis
-    from ..schemas import UserCreate, res_user
-    from ..database import get_db
-except ImportError:
-    import model
-    import utilis
-    from schemas import UserCreate, res_user
-    from database import get_db
+# These files are in app/routers/
+# Need to import from parent directory (app/)
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import model        # This works because we added parent to path
+import oauth
+import schemas
+from database import get_db
+from schemas import UserCreate, res_user
 from fastapi import status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-
+import utilis
 routers = APIRouter(tags=["USERS"])
 
 @routers.post("/users", response_model=res_user)
