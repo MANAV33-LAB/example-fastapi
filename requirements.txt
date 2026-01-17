@@ -9,4 +9,4 @@ pydantic-settings==2.12.0
 alembic==1.17.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
-email-validator==2.3.0email-validator==2.3.0
+email-validator==2.3.0
