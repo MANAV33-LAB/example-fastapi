@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-# Import from app.routers (not just routers)
 from app.routers import post, user, auth, votes
+import app.model
+from app.database import engine
 
 app = FastAPI()
+
+# Create all tables (UNCOMMENT THIS LINE FOR FIRST DEPLOYMENT)
+app.model.Base.metadata.create_all(bind=engine)
 
 origins = ["*"]
 app.add_middleware(
